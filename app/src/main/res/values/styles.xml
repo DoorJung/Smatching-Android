@@ -1,0 +1,29 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <!--minSdkVersion 21 이상에서 모두 호환-->
+        <!--액션바, 타이틀바 제거-->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <!--상태바 투명-->
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
+
+        <!--상태바색, 글씨색 변경-->
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+        <!--멀티터치 금지-->
+        <item name="android:splitMotionEvents">false</item>
+
+        <!--가로모드 금지-->
+        <item name="android:screenOrientation">portrait</item>
+    </style>
+
+</resources>
