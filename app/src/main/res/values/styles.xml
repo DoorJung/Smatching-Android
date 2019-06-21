@@ -7,7 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
-        <!--minSdkVersion 21 이상에서 모두 호환-->
+        <!--minSdkVersion 23 이상에서 모두 호환-->
         <!--액션바, 타이틀바 제거-->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

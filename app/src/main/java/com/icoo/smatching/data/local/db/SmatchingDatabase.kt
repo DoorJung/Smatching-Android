@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.icoo.smatching.data.local.db.entity.TestEntity
 
-@Database(entities = [TestEntity::class], version = 2)
+@Database(entities = [TestEntity::class], version = 1, exportSchema = false)
 abstract class SmatchingDatabase : RoomDatabase() {
 
     companion object {
