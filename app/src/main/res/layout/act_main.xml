@@ -14,16 +14,36 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
             android:background="@color/white"
+            android:fitsSystemWindows="true"
             tools:context=".ui.main.HomeFragment">
 
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/act_main_tb"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                app:contentInsetStart="0dp"
+                app:contentInsetStartWithNavigation="0dp"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                        tools:text="title"
+                        android:text="홈"
+                        android:id="@+id/act_main_tv_title"
+                        android:fontFamily="@font/noto_sans_kr_medium"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textColor="#474747"/>
+
+        </androidx.appcompat.widget.Toolbar>
 
         <com.icoo.smatching.util.view.NonSwipeViewPager
                 android:id="@+id/act_main_vp"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/act_main_tb"
                 app:layout_constraintBottom_toTopOf="@+id/act_main_tl"/>
 
         <com.google.android.material.tabs.TabLayout
