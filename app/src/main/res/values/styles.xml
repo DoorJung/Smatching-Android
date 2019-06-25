@@ -13,11 +13,7 @@
         <item name="windowNoTitle">true</item>
 
         <!--상태바 투명-->
-        <!--<item name="android:windowTranslucentStatus">true</item>-->
-
-        <!--상태바색, 글씨색 변경-->
-        <item name="android:statusBarColor">@color/white</item>
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
 
         <!--멀티터치 금지-->
         <item name="android:splitMotionEvents">false</item>

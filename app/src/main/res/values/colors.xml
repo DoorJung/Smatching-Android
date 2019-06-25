@@ -7,4 +7,12 @@
     <!--Basic color-->
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
+
+    <!--Common color-->
+    <color name="bg">#f9f9f9</color>
+    <color name="title">#474747</color>
+
+    <!--MyPage color-->
+    <color name="myPageBg">#4c82d8</color>
+
 </resources>

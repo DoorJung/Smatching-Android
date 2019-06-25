@@ -32,6 +32,8 @@ class MainActivity : BaseActivity<ActMainBinding, MainViewModel>() {
         //Toolbar
         setSupportActionBar(viewDataBinding.actMainTb)
         supportActionBar!!.title = ""
+        viewDataBinding.actMainTb.layoutParams.height += getStatusBarHeight()
+        viewDataBinding.actMainTb.setPadding(0, getStatusBarHeight(), 0, 0);
 
         //ViewPager
         viewDataBinding.actMainVp.run {
@@ -67,15 +69,27 @@ class MainActivity : BaseActivity<ActMainBinding, MainViewModel>() {
                 navigationLayout.findViewById(R.id.act_main_navigation_rl_talk) as RelativeLayout
             getTabAt(3)!!.customView =
                 navigationLayout.findViewById(R.id.act_main_navigation_rl_my_page) as RelativeLayout
-
+            //TabSelectedListener
             addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab) {
                     viewModel.setTitle(tab.position)
                     when (tab.position) {
-                        0 -> viewDataBinding.actMainTvTitle.text = "홈"
-                        1 -> viewDataBinding.actMainTvTitle.text = "맞춤 지원"
-                        2 -> viewDataBinding.actMainTvTitle.text = "창업 토크"
-                        3 -> viewDataBinding.actMainTvTitle.text = "마이페이지"
+                        0 -> {
+                            viewDataBinding.actMainTvTitle.run { text = "홈"; setTextColor(resources.getColor(R.color.title)) }
+                            viewDataBinding.actMainTb.setBackgroundColor(resources.getColor(R.color.bg))
+                        }
+                        1 -> {
+                            viewDataBinding.actMainTvTitle.run { text = "맞춤 지원"; setTextColor(resources.getColor(R.color.title)) }
+                            viewDataBinding.actMainTb.setBackgroundColor(resources.getColor(R.color.bg))
+                        }
+                        2 -> {
+                            viewDataBinding.actMainTvTitle.run { text = "창업 토크"; setTextColor(resources.getColor(R.color.title)) }
+                            viewDataBinding.actMainTb.setBackgroundColor(resources.getColor(R.color.bg))
+                        }
+                        3 -> {
+                            viewDataBinding.actMainTvTitle.run { text = "마이페이지"; setTextColor(resources.getColor(R.color.white)) }
+                            viewDataBinding.actMainTb.setBackgroundColor(resources.getColor(R.color.myPageBg))
+                        }
                     }
                 }
 
@@ -116,6 +130,16 @@ class MainActivity : BaseActivity<ActMainBinding, MainViewModel>() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+
+    fun getStatusBarHeight(): Int {
+        var result = 0
+        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
+        if (resourceId > 0)
+            result = resources.getDimensionPixelSize(resourceId)
+
+        return result
     }
 
     companion object {
