@@ -5,6 +5,7 @@ import com.icoo.smatching.data.remote.api.NetworkService
 import com.icoo.smatching.ui.main.MainViewModel
 import com.icoo.smatching.ui.main.home.HomeViewModel
 import com.icoo.smatching.ui.main.myPage.MyPageViewModel
+import com.icoo.smatching.ui.main.search.SearchViewModel
 import com.icoo.smatching.ui.main.smatching.SmatchingViewModel
 import com.icoo.smatching.ui.main.talk.TalkViewModel
 import com.icoo.smatching.util.AndroidSchedulerProvider
@@ -42,6 +43,9 @@ val viewModule = module {
     viewModel { TalkViewModel() }
     //myPage
     viewModel { MyPageViewModel() }
+
+    //search
+    viewModel { SearchViewModel() }
 }
 
 val appModule = listOf(rxModule, networkModule, localModule, factoryModule, viewModule)

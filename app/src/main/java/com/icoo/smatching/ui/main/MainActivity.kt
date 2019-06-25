@@ -1,5 +1,6 @@
 package com.icoo.smatching.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.RelativeLayout
+import androidx.lifecycle.Observer
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.icoo.smatching.R
@@ -32,8 +34,10 @@ class MainActivity : BaseActivity<ActMainBinding, MainViewModel>() {
         //Toolbar
         setSupportActionBar(viewDataBinding.actMainTb)
         supportActionBar!!.title = ""
-        viewDataBinding.actMainTb.layoutParams.height += getStatusBarHeight()
-        viewDataBinding.actMainTb.setPadding(0, getStatusBarHeight(), 0, 0);
+        viewDataBinding.actMainTb.run {
+            layoutParams.height += getStatusBarHeight()
+            setPadding(0, getStatusBarHeight(), 0, 0)
+        }
 
         //ViewPager
         viewDataBinding.actMainVp.run {
@@ -43,6 +47,7 @@ class MainActivity : BaseActivity<ActMainBinding, MainViewModel>() {
                 addFragment(TalkFragment())
                 addFragment(MyPageFragment())
             }
+
             //Refresh menu
             addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
                 override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
@@ -69,10 +74,10 @@ class MainActivity : BaseActivity<ActMainBinding, MainViewModel>() {
                 navigationLayout.findViewById(R.id.act_main_navigation_rl_talk) as RelativeLayout
             getTabAt(3)!!.customView =
                 navigationLayout.findViewById(R.id.act_main_navigation_rl_my_page) as RelativeLayout
+
             //TabSelectedListener
             addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab) {
-                    viewModel.setTitle(tab.position)
                     when (tab.position) {
                         0 -> {
                             viewDataBinding.actMainTvTitle.run { text = "홈"; setTextColor(resources.getColor(R.color.title)) }
@@ -98,6 +103,14 @@ class MainActivity : BaseActivity<ActMainBinding, MainViewModel>() {
             })
         }
 
+        viewModel.activityToStart.observe(this, Observer { value ->
+            val intent = Intent(this@MainActivity, value.first.java)
+            value.second?.let {
+                intent.putExtras(it)
+            }
+            startActivity(intent)
+        })
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -120,7 +133,7 @@ class MainActivity : BaseActivity<ActMainBinding, MainViewModel>() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_main_search -> {
-                Log.d(TAG, "검색")
+                viewModel.navigate(0)
             }
             R.id.menu_main_setting -> {
                 Log.d(TAG, "설정")
